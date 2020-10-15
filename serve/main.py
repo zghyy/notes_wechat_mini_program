@@ -44,3 +44,7 @@ def delnote():
 @app.route('/editnote',methods=['POST'])
 def editnote():
     return 1
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80, debug=False)
