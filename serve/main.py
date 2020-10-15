@@ -25,13 +25,14 @@ def getnote():
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
     sql = '''SELECT * FROM NOTE'''
-    notes = []
-    results = []
+    results = {}
     try:
         cursor.execute(sql)
         notes = cursor.fetchall()
+        count = 0
         for row in notes:
-            results.append(NOTE(row[0], row[1], row[2]).formateNote())
+            results.update(NOTE(row[0], row[1], row[2]).formateNote(count))
+            count += 1
     except:
         print("Unable to fetch data!")
     conn.close()
@@ -55,8 +56,8 @@ class NOTE:
         self.title = str(title)
         self.content = str(content)
 
-    def formateNote(self):
-        result = {"key": self.key, "value": {"title": self.title, "content": self.content}}
+    def formateNote(self, count):
+        result = {count: {"key": self.key, "value": {"title": self.title, "content": self.content}}}
         return result
 
 
