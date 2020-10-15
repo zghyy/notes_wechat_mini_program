@@ -4,7 +4,7 @@
 @Time    : 2020/10/15 下午6:53
 """
 
-from flask import Flask
+from flask import Flask, request
 import pymysql
 import mysql_info as SQLINFO
 
@@ -14,9 +14,18 @@ app = Flask(__name__)
 # 添加笔记 需要发送POST请求
 @app.route('/addnote', methods=['POST'])
 def addnote():
+    title = request.form['value']['title']
+    content = request.form['value']['content']
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
-
-    return 1
+    cursor = conn.cursor()
+    sql = "INSERT INTO NOTE(title,content) VALUES ('%s','%s')" % (title, content)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+    conn.close()
+    return "done"
 
 
 # 查询笔记 直接发送GET请求
@@ -42,12 +51,34 @@ def getnote():
 # 删除笔记 需要发送POST请求
 @app.route('/delnote', methods=['POST'])
 def delnote():
-    return 1
+    key = request.form['key']
+    conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
+    cursor = conn.cursor()
+    sql = "DELETE FROM NOTE WHERE key = %s" % key
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+    conn.close()
+    return "done"
 
 
 @app.route('/editnote', methods=['POST'])
 def editnote():
-    return 1
+    key = request.form['key']
+    title = request.form['value']['title']
+    content = request.form['value']['content']
+    conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
+    cursor = conn.cursor()
+    sql = "UPDATE NOTE SET title = %s,content = %s WHERE key = %s" % (title, content, key)
+    try:
+        cursor.execute(sql)
+        conn.commit()
+    except:
+        conn.rollback()
+    conn.close()
+    return "done"
 
 
 class NOTE:
