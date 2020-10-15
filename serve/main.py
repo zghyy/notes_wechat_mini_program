@@ -14,8 +14,8 @@ app = Flask(__name__)
 # 添加笔记 需要发送POST请求
 @app.route('/addnote', methods=['POST'])
 def addnote():
-    title = request.form['value']['title']
-    content = request.form['value']['content']
+    title = request.form['title']
+    content = request.form['content']
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
     sql = "INSERT INTO NOTE(title,content) VALUES ('%s','%s')" % (title, content)
@@ -51,10 +51,10 @@ def getnote():
 # 删除笔记 需要发送POST请求
 @app.route('/delnote', methods=['POST'])
 def delnote():
-    key = request.form['key']
+    notekey = request.form['notekey']
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
-    sql = "DELETE FROM NOTE WHERE key = %s" % key
+    sql = "DELETE FROM NOTE WHERE notekey = %d" % notekey
     try:
         cursor.execute(sql)
         conn.commit()
@@ -66,12 +66,12 @@ def delnote():
 
 @app.route('/editnote', methods=['POST'])
 def editnote():
-    key = request.form['key']
-    title = request.form['value']['title']
-    content = request.form['value']['content']
+    notekey = request.form['notekey']
+    title = request.form['title']
+    content = request.form['content']
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
-    sql = "UPDATE NOTE SET title = %s,content = %s WHERE key = %s" % (title, content, key)
+    sql = "UPDATE NOTE SET title = '%s',content = '%s' WHERE notekey = %d" % (title, content, notekey)
     try:
         cursor.execute(sql)
         conn.commit()
@@ -82,13 +82,13 @@ def editnote():
 
 
 class NOTE:
-    def __init__(self, key, title, content):
-        self.key = str(key)
+    def __init__(self,  notekey, title, content):
+        self. notekey = int(notekey)
         self.title = str(title)
         self.content = str(content)
 
     def formateNote(self, count):
-        result = {count: {"key": self.key, "value": {"title": self.title, "content": self.content}}}
+        result = {count: {"notekey": self.notekey, "title": self.title, "content": self.content}}
         return result
 
 
