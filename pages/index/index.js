@@ -1,4 +1,6 @@
 // pages/create/index.js
+var serve = require('../../utils/myserveAPI')
+
 Page({
 
     /**
@@ -12,11 +14,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var item = serve.getnote()
+        console.log(item)
         var item={
             "noteket":"0",
             "title":"111",
             "content":"222"
         }
+
         var items = []
         items[0] = item
         items[1] = item

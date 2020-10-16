@@ -82,8 +82,8 @@ def editnote():
 
 
 class NOTE:
-    def __init__(self,  notekey, title, content):
-        self. notekey = int(notekey)
+    def __init__(self, notekey, title, content):
+        self.notekey = int(notekey)
         self.title = str(title)
         self.content = str(content)
 
@@ -93,4 +93,5 @@ class NOTE:
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=23333, debug=False)
+    app.config['SERVER_NAME'] = 'api.zghy.xyz'
+    app.run(host='0.0.0.0', port=23333, debug=True, ssl_context=(SQLINFO.PEM, SQLINFO.KEY))
