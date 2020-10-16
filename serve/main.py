@@ -7,7 +7,7 @@
 from flask import Flask, request
 import pymysql
 import mysql_info as SQLINFO
-import time
+import datetime
 
 app = Flask(__name__)
 
@@ -15,13 +15,14 @@ app = Flask(__name__)
 # 添加笔记 需要发送POST请求
 @app.route('/addnote', methods=['POST'])
 def addnote():
-    currentTime = int(time.time())
+    now = datetime.datetime.now()
+    now = now.strftime("%Y-%m-%d %H:%M:%S")
     title = request.form['title']
     content = request.form['content']
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
     sql = "INSERT INTO NOTE(title,content,createtime,updatetime) VALUES ('%s','%s','%s','%s')" % (
-    title, content, currentTime, currentTime)
+        title, content, now, now)
     try:
         cursor.execute(sql)
         conn.commit()
@@ -69,13 +70,15 @@ def delnote():
 
 @app.route('/editnote', methods=['POST'])
 def editnote():
-    currentTime = int(time.time())
+    now = datetime.datetime.now()
+    now = now.strftime("%Y-%m-%d %H:%M:%S")
     notekey = request.form['notekey']
     title = request.form['title']
     content = request.form['content']
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
-    sql = "UPDATE NOTE SET title = '%s',content = '%s',updatetime = '%s' WHERE notekey = %d" % (title, content, currentTime,notekey)
+    sql = "UPDATE NOTE SET title = '%s',content = '%s',updatetime = '%s' WHERE notekey = %d" % (
+    title, content, now, notekey)
     try:
         cursor.execute(sql)
         conn.commit()
