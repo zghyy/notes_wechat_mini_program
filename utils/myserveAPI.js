@@ -9,10 +9,7 @@ function getnote(callback) {
         data:{},
         method:'GET',
         success:function (res) {
-            console.log(1)
-            console.log(res.data)
             callback(res.data)
-            return res.data
         }
     })
 }

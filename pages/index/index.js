@@ -16,12 +16,11 @@ Page({
     onLoad: function (options) {
         let that=this;
         serve.getnote((data)=>{
+            console.log(data)
             this.setData({
                 items:data
             })
-            console.log(that.data.items);
         })
-        console.log(that.data.items)
 
     },
 
@@ -29,7 +28,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        this.onLoad()
     },
 
     /**
@@ -86,7 +85,3 @@ Page({
         })
     }
 })
-// function fpp() {
-//     console.log("fpp is called");
-//     console.log(this);
-// }
