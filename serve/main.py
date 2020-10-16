@@ -7,6 +7,7 @@
 from flask import Flask, request
 import pymysql
 import mysql_info as SQLINFO
+import time
 import datetime
 
 app = Flask(__name__)
@@ -93,8 +94,8 @@ class NOTE:
         self.notekey = int(notekey)
         self.title = str(title)
         self.content = str(content)
-        self.createtime = createtime
-        self.updatetime = updatetime
+        self.createtime = createtime.strftime("%Y-%m-%d %H:%M:%S")
+        self.updatetime = updatetime.strftime("%Y-%m-%d %H:%M:%S")
 
     def formateNote(self, count):
         result = {count: {"notekey": self.notekey, "title": self.title, "content": self.content,

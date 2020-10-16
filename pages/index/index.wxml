@@ -6,8 +6,6 @@
     </view>
   </view>
 
-
-
   <block wx:for="{{items}}" wx:key="{{notekey}}">
     <view class="col">
       <view class='item note' data-key="{{item.notekey}}" bindtap="onEditItem">
