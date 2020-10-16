@@ -14,20 +14,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var item = serve.getnote()
-        console.log(item)
-        var item={
-            "noteket":"0",
-            "title":"111",
-            "content":"222"
-        }
-
-        var items = []
-        items[0] = item
-        items[1] = item
-        this.setData({
-            items:items
+        let that=this;
+        serve.getnote((data)=>{
+            this.setData({
+                items:data
+            })
+            console.log(that.data.items);
         })
+        console.log(that.data.items)
 
     },
 
@@ -92,3 +86,7 @@ Page({
         })
     }
 })
+// function fpp() {
+//     console.log("fpp is called");
+//     console.log(this);
+// }

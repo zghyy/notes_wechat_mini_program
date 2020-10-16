@@ -93,5 +93,4 @@ class NOTE:
 
 
 if __name__ == '__main__':
-    app.config['SERVER_NAME'] = 'api.zghy.xyz'
-    app.run(host='0.0.0.0', port=23333, debug=True, ssl_context=(SQLINFO.PEM, SQLINFO.KEY))
+    app.run(host='0.0.0.0', port=23333, debug=False)
