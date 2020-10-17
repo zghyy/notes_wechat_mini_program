@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/create/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/edit/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ff9b6e",
