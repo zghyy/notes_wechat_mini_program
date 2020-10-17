@@ -8,7 +8,7 @@
 
   <block wx:for="{{items}}" wx:key="{{notekey}}">
     <view class="col">
-      <view class='item note {{item.quality}}' data-key="{{item.notekey}}" bindtap="onEditItem">
+      <view class='item note {{item.quality}}' data-key="{{item.countkey}}" bindtap="onEditItem">
         <view class='content'>
           <view class='txt'>{{item.title}}</view>
         </view>

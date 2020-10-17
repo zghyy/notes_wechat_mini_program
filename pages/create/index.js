@@ -78,7 +78,6 @@ Page({
         });
         console.log(this.data.item)
         serve.addnote((data) => {
-            console.log(data)
             if (data === "done") {
                 wx.showToast({
                     title: "保存成功",

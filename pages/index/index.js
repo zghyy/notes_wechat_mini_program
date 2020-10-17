@@ -27,6 +27,7 @@ Page({
                 data[i]["year"] = opdate.getFullYear();
                 data[i]["month"] = (opdate.getMonth() + 1 < 10 ? '0' + (opdate.getMonth() + 1) : opdate.getMonth() + 1);
                 data[i]["day"] = (opdate.getDate() < 10 ? '0' + (opdate.getDate()) : opdate.getDate());
+                data[i]["countkey"]=i
 
 
                 if(data[i]["year"]===thisYear && data[i]["month"]===thisMonth&&data[i]["day"]===thisDay){
@@ -100,8 +101,12 @@ Page({
         })
     },
     onEditItem: function (event) {
+        console.log(event.currentTarget.dataset.key)
+
+        var json = this.data.items[event.currentTarget.dataset.key]
+        console.log(json)
         wx.navigateTo({
-            url: "/pages/create/index"
+            url: "/pages/edit/index?json="+JSON.stringify(json)
         })
     }
 })

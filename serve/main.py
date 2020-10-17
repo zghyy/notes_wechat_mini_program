@@ -59,7 +59,7 @@ def delnote():
     notekey = request.form['notekey']
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
-    sql = "DELETE FROM NOTE WHERE notekey = %d" % notekey
+    sql = "DELETE FROM NOTE WHERE notekey = %d" % int(notekey)
     try:
         cursor.execute(sql)
         conn.commit()
@@ -79,7 +79,7 @@ def editnote():
     conn = pymysql.connect(SQLINFO.HOST, SQLINFO.USER, SQLINFO.PASSWORD, SQLINFO.DATABASE)
     cursor = conn.cursor()
     sql = "UPDATE NOTE SET title = '%s',content = '%s',updatetime = '%s' WHERE notekey = %d" % (
-    title, content, now, notekey)
+    title, content, now, int(notekey))
     try:
         cursor.execute(sql)
         conn.commit()
