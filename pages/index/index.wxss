@@ -40,12 +40,19 @@ page {
     height: 80rpx;
     background: #9f7968;
     font-size: 22rpx;
+}
 
+.item.note.today{
+    background: #fde3d5;
 }
 
 .item .txt {
     flex: 1;
     text-align: center;
+}
+
+.item.bottom.txt{
+    color: #fff;
 }
 
 .item .content .txt {

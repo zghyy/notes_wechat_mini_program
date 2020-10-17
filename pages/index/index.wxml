@@ -8,12 +8,13 @@
 
   <block wx:for="{{items}}" wx:key="{{notekey}}">
     <view class="col">
-      <view class='item note' data-key="{{item.notekey}}" bindtap="onEditItem">
+      <view class='item note {{item.quality}}' data-key="{{item.notekey}}" bindtap="onEditItem">
         <view class='content'>
           <view class='txt'>{{item.title}}</view>
         </view>
         <view class='bottom'>
           <view class='txt'>
+            {{item.year}}-{{item.month}}-{{item.day}}
           </view>
         </view>
       </view>
