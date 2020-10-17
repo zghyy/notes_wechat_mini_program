@@ -6,11 +6,11 @@
     "pages/edit/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ff9b6e",
+    "navigationBarBackgroundColor": "#0278ae",
     "navigationBarTitleText": "记事本",
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "light",
-    "backgroundColor": "#efeff4",
+    "backgroundColor": "#f7fbfc",
     "enablePullDownRefresh": true
   },
   "style": "v2",

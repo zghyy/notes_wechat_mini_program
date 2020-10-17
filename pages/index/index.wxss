@@ -36,14 +36,16 @@ page {
     justify-content: center;
 }
 
+
+
 .item .bottom {
     height: 80rpx;
-    background: #9f7968;
+    background: #b9d7ea;
     font-size: 22rpx;
 }
 
 .item.note.today{
-    background: #fde3d5;
+    background: #769fcd;
 }
 
 .item .txt {
@@ -51,9 +53,9 @@ page {
     text-align: center;
 }
 
-.item.bottom.txt{
-    color: #fff;
-}
+/* .item.bottom.txt{
+    color: #f9f7f7;
+} */
 
 .item .content .txt {
     padding: 0 5%;
@@ -69,7 +71,7 @@ page {
 }
 
 .item.note {
-    background: #fff;
+    background: #e2f1ff;
 }
 
 .addBox {
