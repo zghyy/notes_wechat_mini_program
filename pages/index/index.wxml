@@ -1,23 +1,22 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="col">
-    <view class="item addBox" bindtap="onNewItem">
-      <image class="addIcon" src="../../image/add.png"></image>
-    </view>
-  </view>
-
-  <block wx:for="{{items}}" wx:key="{{notekey}}">
     <view class="col">
-      <view class='item note {{item.quality}}' data-key="{{item.countkey}}" bindtap="onEditItem">
-        <view class='content'>
-          <view class='txt'>{{item.title}}</view>
+        <view class="item addBox" bindtap="onNewItem">
+            <image class="addIcon" src="../../image/add.png"></image>
         </view>
-        <view class='bottom'>
-          <view class='txt'>
-            {{item.year}}-{{item.month}}-{{item.day}}
-          </view>
-        </view>
-      </view>
     </view>
-  </block>
+    <block wx:for="{{items}}" wx:key="{{notekey}}">
+        <view class="col">
+            <view class='item note {{item.quality}}' data-key="{{item.countkey}}" bindtap="onEditItem">
+                <view class='content'>
+                    <view class='txt'>{{item.title}}</view>
+                </view>
+                <view class='bottom'>
+                    <view class='txt'>
+                        {{item.year}}-{{item.month}}-{{item.day}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
 </view>

@@ -68,7 +68,7 @@ def delnote():
     conn.close()
     return "done"
 
-
+# 修改笔记 需要发送POST请求
 @app.route('/editnote', methods=['POST'])
 def editnote():
     now = datetime.datetime.now()
